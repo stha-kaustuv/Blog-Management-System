@@ -22,7 +22,7 @@ This is a Blog Management REST API built using **Laravel 12** with role and perm
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/yourusername/blog-management-system.git
+git clone https://github.com/stha-kaustuv/Blog-Management-System.git
 cd blog-management-system
 
 composer install
