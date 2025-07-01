@@ -22,9 +22,12 @@ This is a Blog Management REST API built using **Laravel 12** with role and perm
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/stha-kaustuv/Blog-Management-System.git
-cd blog-management-system
-
-composer install
-cp .env.example .env
-php artisan key:generate
+1.git clone https://github.com/stha-kaustuv/Blog-Management-System.git
+2.cd blog-management-system
+3.composer install
+4.cp .env.example .env
+5.php artisan key:generate
+6. Run `php artisan migrate --seed` to initialize database and roles.
+7. Default login credentials:
+   - Email: admin@example.com
+   - Password: admin
