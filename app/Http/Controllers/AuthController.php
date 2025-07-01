@@ -20,10 +20,16 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
         ]);
+        if (User::count() === 1) {
+            $user->assignRole('admin');
+        } else {
+            $user->assignRole('editor');
+        }
 
         $token = $user->createToken('api-token')->plainTextToken;
 
         return response()->json([
+            'message' => 'User registered successfully',
             'user' => $user,
             'token' => $token,
         ], 201);
