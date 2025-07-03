@@ -7,12 +7,29 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        $posts = Post::with(['category','author'])->get();
+        $user=auth()->user();
+        $formatted=$posts->map(function($post){
+            return [
+                'id' => $post->id,
+                'title' => $post->title,
+                'author_name' => $post->author?->name,
+                'body' => $post->body,
+                'category_name' => $post->category?->name,
+                'created_at' => $post->created_at,
+            ];
+        });
+
+        return response()->json($formatted);
+    }
     public function store(Request $request)
     {
         $validated=$request->validate([
             'title' => 'required',
             'body' => 'required',
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required| integer| exists:categories,id',
         ]);
         $post = Post::create([
             ...$validated,
@@ -20,9 +37,8 @@ class PostController extends Controller
         ]);
         return response()->json([
             'message:'=>'Post created successfully',
-            201,
-            $post
-        ]);
+            'post'=>$post
+        ],201);
     }
     public function update(Request $request, Post $post)
     {
@@ -37,7 +53,7 @@ class PostController extends Controller
         $post->update($validated);
         return response()->json([
             'message:'=>'Post updated successfully',
-            $post
+            'updated'=>$post
         ]);
     }
 
@@ -48,7 +64,7 @@ class PostController extends Controller
         }
         $post->delete();
         return response()->json([
-            'message:'=>'Post deleted successfully',
+            'message'=>'Post deleted successfully',
         ]);
     }
 }
