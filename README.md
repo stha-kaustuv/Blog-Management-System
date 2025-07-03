@@ -31,3 +31,7 @@ This is a Blog Management REST API built using **Laravel 12** with role and perm
 7. Default login credentials:
    - Email: admin@example.com
    - Password: admin
+
+### 📫 Postman Collection
+
+[Download Postman Collection](docs/postman_collection.json)
