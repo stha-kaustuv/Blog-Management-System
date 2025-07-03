@@ -22,7 +22,8 @@ This is a Blog Management REST API built using **Laravel 12** with role and perm
 📫 Postman Collection
 
 You can test all API endpoints using this Postman collection:  
-[📥 Download blog-management.postman_collection.json](./blog-management.postman_collection.json)
+[📥 Download Postman Collection](./Blog%20Management.postman_collection.json)
+
 
 
 ### Clone & Install
