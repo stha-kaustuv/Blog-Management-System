@@ -23,9 +23,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/categories', [CategoryController::class, 'store'])->middleware('permission:category-manage');
     Route::get('/categories', [CategoryController::class, 'index'])->middleware('permission:category-manage');
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->middleware('permission:category-manage');
+    Route::get('/categories/export', [CategoryController::class, 'export'])->middleware('permission:category-manage');
+    Route::post('/categories/import', [CategoryController::class, 'import'])->middleware('permission:category-manage');
+
 
 });
 
 Route::get('public/posts', [PostController::class, 'index']);
-Route::get('/categories/export', [CategoryController::class, 'export']);
-Route::post('/categories/import', [CategoryController::class, 'import']);
+Route::get('/posts/export', [PostController::class, 'export']);

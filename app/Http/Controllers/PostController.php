@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Exports\PostsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PostController extends Controller
 {
@@ -66,5 +68,9 @@ class PostController extends Controller
         return response()->json([
             'message'=>'Post deleted successfully',
         ]);
+    }
+    public function export()
+    {
+        return Excel::download(new PostsExport, 'posts.xlsx');
     }
 }
