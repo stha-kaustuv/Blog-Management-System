@@ -1,5 +1,8 @@
 <?php
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
+use Spatie\Permission\Middleware\PermissionMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,8 +18,14 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->middleware('permission:post-create');
-    Route::put('/posts/{id}', [PostController::class, 'update'])->middleware('permission:post-edit');
-    Route::delete('/posts/{id}', [PostController::class, 'destroy'])->middleware('permission:post-delete');
+    Route::put('/posts/{post}', [PostController::class, 'update'])->middleware('permission:post-edit');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->middleware('permission:post-delete');
     Route::post('/categories', [CategoryController::class, 'store'])->middleware('permission:category-manage');
-    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->middleware('permission:category-manage');
+    Route::get('/categories', [CategoryController::class, 'index'])->middleware('permission:category-manage');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->middleware('permission:category-manage');
+
 });
+
+Route::get('public/posts', [PostController::class, 'index']);
+Route::get('/categories/export', [CategoryController::class, 'export']);
+Route::post('/categories/import', [CategoryController::class, 'import']);
