@@ -19,7 +19,13 @@ This is a Blog Management REST API built using **Laravel 12** with role and perm
 
 ## 🛠 Setup Instructions
 
-### 1. Clone & Install
+📫 Postman Collection
+
+You can test all API endpoints using this Postman collection:  
+[📥 Download blog-management.postman_collection.json](./blog-management.postman_collection.json)
+
+
+### Clone & Install
 
 ```bash
 1.git clone https://github.com/stha-kaustuv/Blog-Management-System.git
@@ -32,6 +38,4 @@ This is a Blog Management REST API built using **Laravel 12** with role and perm
    - Email: admin@example.com
    - Password: admin
 
-### 📫 Postman Collection
 
-[Download Postman Collection](docs/postman_collection.json)
